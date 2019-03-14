@@ -15,12 +15,10 @@ Router.init = function () {
         ApplicationController.auto_calculate();
     });
 
-    $("#snowball-btn").click(function () {
-        ApplicationController.changePaymentType(this);
-        ApplicationController.auto_calculate();
-    });
-
-
+    $('#nav-balance-tab').on('click', function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })
 };
 
 

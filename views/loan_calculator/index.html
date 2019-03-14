@@ -7,217 +7,146 @@
     <meta name='keywords'
           content='loan, loan calculator, debt free, web application, personal finance, sean freiburg, jquery'/>
 
-    <link rel="icon" href="assets/src/img/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="assets/src/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../public/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../../public/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/stylesheets/style.css" rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../public/stylesheets/style.css" rel="stylesheet">
 </head>
 <body>
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-3 col-sm-offset-3">
-            <h1 id="title"><a class="title" href="/">unbury.us</a></h1>
-        </div>
-        <div class="col-sm-4">
-            <h3>get unburied from debt</h3>
-        </div>
-        <div class="col-sm-2">
-            <a data-toggle="modal" data-target="#helpModal" href="#">help</a> \
-            <a data-toggle="modal" data-target="#aboutModal" href="#">about</a> \
-            <a  href="/fi_calculator">fi_calculator</a>
-        </div>
-    </div>
-    <hr>
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-sm-12">
+                    <p class="center">To view your loans later, simply copy the link in the
+                        address bar. You can paste it in to your address bar later to view your loans.</p>
+                </div>
+            </div>
 
+            <hr>
+            <div class="row">
+                <div class="col-sm-4 col-sm-offset-1">
+                    <h4>Monthly Payment</h4>
+                    <input class="form-control" id="monthly-payment" placeholder="0">
+                </div>
+                <div class="col-sm-5 col-sm-offset-1">
+                    <h4>&nbsp;</h4>
+                    <button id="calculate" class="btn btn-default btn-block">Refresh Graph</button>
 
-    <div class="row">
-        <div class="col-sm-12">
-            <p class="center">To view your loans later, simply copy the link in the
-                address bar. You can paste it in to your address bar later to view your loans.</p>
-                <p class="center"><a href="https://www.reddit.com/message/compose/?to=frycicle"> Send a message to /u/frycicle on reddit for any questions or bugs.<a/> </p> 
-        </div>
-    </div>
-    <hr>
+                </div>
+            </div>
+            <hr>
 
-    <div id="loan-inputs"></div>
-
-
-    <div class="row">
-        <div class="col-sm-3 col-sm-offset-0">
-            <button class="btn btn-success btn-block" id="add-loan">+ add loan</button>
-        </div>
-
-    </div>
-
-    <hr>
-    <div class="row">
-        <div class="col-sm-2">
-            <h4>monthly payment</h4>
-            <input class="form-control" id="monthly-payment" placeholder="0">
-        </div>
-        <div class="col-sm-4 col-sm-offset-1">
-            <h4>payment type
-                <a data-toggle="modal" data-target="#paymentTypeHelpModal" href="#">
-                    <span class="question">?</span>
-                </a>
-            </h4>
+            <div class="row col-sm-offset-0" id="loan-inputs">
+                <div class="row">
+                    <div class="col-sm-11">
+                        <div class="col-sm-3">
+                            <p>Loan Name</p>
+                        </div>
+                        <div class="col-sm-3">
+                            <p>Current Balance</p>
+                        </div>
+                        <div class="col-sm-3">
+                            <p>Minimum Payment</p>
+                        </div>
+                        <div class="col-sm-2">
+                            <p>Interest Rate(%)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="row">
-                <div class="col-sm-6">
-                    <button id="avalanche-btn" class="btn btn-primary  btn-block">avalanche</button>
+                <div class="col-sm-10 col-sm-offset-1">
+                    <button class="btn btn-success btn-block" id="add-loan">+ Add Loan</button>
                 </div>
-                <div class="col-sm-6">
-                    <button id="snowball-btn" class="btn btn-default btn-block">snowball</button>
-                </div>
+
             </div>
         </div>
 
-        <div class="col-sm-2 col-sm-offset-1">
-            <h4>&nbsp;</h4>
-            <button id="calculate" class="btn btn-default btn-block">calculate</button>
-
+        <div class="col-sm-6">
+            <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+                <li class="nav-item active">
+                    <a class="nav-link active show" id="balance-tab" data-toggle="tab" href="#balanceGraph" role="tab" aria-controls="balance" aria-selected="true">Balance</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="payments-tab" data-toggle="tab" href="#paymentsGraph" role="tab" aria-controls="payments" aria-selected="false">Payments</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active in" id="balanceGraph" role="tabpanel" aria-labelledby="balance-tab">...</div>
+                <div class="tab-pane fade" id="paymentsGraph" role="tabpanel" aria-labelledby="payments-tab">...</div>
+            </div>
+                
+            <div id="total-results"></div>
         </div>
     </div>
-    <hr>
-    <br>
 
-    <div class="row">
-        <div id="graph" class="col-sm-12">
-
-        </div>
-    </div>
-
-
-    <br>
-
-    <div id="all-loan-results">
-        <div id="total-results"></div>
-        <div id="loan-results"></div>
-    </div>
 
     <br><br>
+    
+    <div class="row" id="loan-results"></div>
 
-    <div class="row">
-        <div class="col-sm-3">
-            <a href="http://seanfreiburg.com">seanfreiburg.com </a>
-        </div>
-        <div class="col-sm-3 col-sm-offset-5">
-            <a href='https://github.com/seanfreiburg/unbury.us/issues' title='Report bugs'>Report a Bug</a> \
-            <a href='http://github.com/seanfreiburg/unbury.us' title='Unbury.me on GitHub'>GitHub</a> \
-            <a href='https://github.com/seanfreiburg/unbury.us/blob/master/LICENSE' title='License'>MIT License</a>
-            \ <a href='http://unbury.me' title='unbury.me'>credit</a>
-        </div>
-    </div>
-
-
+    <br><br>
 </div>
-
-<!-- Modals -->
-
-<div class="modal fade" id="paymentTypeHelpModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Payment Type</h4>
-            </div>
-            <div class="modal-body">
-
-                <p><strong>Avalanche</strong>: Paying off loans with the <strong>highest interest</strong> rate first.</p>
-                <p><strong>Snowball</strong>: Paying off loans with the <strong>lowest balance</strong> first.</p>
-                <p>While <strong>avalanche</strong> results in paying less interest, as well as being debt free sooner, <strong>snowball</strong> pays off individual loans faster, which can be motivating!</p>
-                <p>Depending on your loans, the outcome may be the same regardless of the method used.</p>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="modal fade" id="helpModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Help</h4>
-            </div>
-            <div class="modal-body">
-                <p>
-
-                    unbury.us is a loan calculator designed to help you get debt-free as fast as possible. Once your
-                    loan information is entered, you may set the total amount you're able to put towards loans in a
-                    month. If this amount is greater than the minimum you're able to pay on loans, the extra money is
-                    put towards one loan every month to eliminate it. Once a loan is paid off, the money that was
-                    previously going towards that loan is now put towards the next loan, and so forth.
-                </p>
-
-                <p>
-                    The order of which loans are paid off first is either highest-to-lowest interest rate (Avalanche),
-                    or lowest-to-highest remaining principal (Snowball), depending on which you choose.
-                </p>
-
-                <p>
-                    Put just an extra $100 a month towards your loans and see how much time and interest paid you save!
-                </p>
+      
+<!-- Modal -->
+<div class="modal fade" id="loan-input-modal" tabindex="-1" data-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLongTitle">Add new Loan</h3>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="loan-name" class="col-form-label">Loan Name:</label>
+                            <input type="text" class="form-control" id="loan-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="current-balance" class="col-form-label">Current Balance:</label>
+                            <input type="number" class="form-control" id="current-balance">
+                        </div>
+                        <div class="form-group">
+                            <label for="minimum-payment" class="col-form-label">Minimum Payment:</label>
+                            <input type="number" class="form-control" id="minimum-payment">
+                        </div>
+                        <div class="form-group">
+                            <label for="interest-rate" class="col-form-label">Interest Rate:</label>
+                            <input type="number" step="0.01" class="form-control" id="interest-rate">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="add-loan">Save changes</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-<div class="modal fade" id="aboutModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">About</h4>
-            </div>
-            <div class="modal-body">
-
-                <p>
-                    <strong>unbury.us</strong> is a loan calculator created by <a href='http://www.seanfreiburg.com'
-                                                                                  target='_new'
-                                                                                  title='seanfreiburg.com'>Sean
-                    Freiburg</a>.</p>
-
-                <p>Source code for the project may be obtained at <a
-                        href="https://github.com/seanfreiburg/unbury.us">github</a>
-                    and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT
-                        License</a>.
-                </p>
-
-                <p>If you have any comments, questions or feedback, let me know on Twitter <a
-                        href='http://www.twitter.com/sfreiburg' title='Sean Freiburg on Twitter'>@sfreiburg</a></p>
-
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- Templates -->
 <script id="loan-input-template" type="text/x-handlebars-template">
-    <div id="loan{{id}}" class="loan row">
-        <div class="col-sm-3">
-            <p>loan name</p>
-            <input id="loan-name-{{id}}" class="form-control input-error" name="loan-name" type="text"
-                   placeholder="loan {{id}}">
-        </div>
-        <div class="col-sm-3">
-            <p>current balance</p>
-            <input id="current-balance-{{id}}" class="form-control input-error" name="current-balance" placeholder="$0">
-        </div>
-        <div class="col-sm-3">
-            <p>minimum payment</p>
-            <input id="minimum-payment-{{id}}" class="form-control input-error" name="minimum-payment" placeholder="$0">
-        </div>
-        <div class="col-sm-2">
-            <p>interest rate</p>
-            <input id="interest-rate-{{id}}" class="form-control input-error" name="interest-rate" placeholder="0%">
-
+    <div id="loan{{id}}" class="loan row justify-content-md-center">
+        <div class="col-sm-11">
+                <div class="col-sm-3">
+                    <input id="loan-name-{{id}}" class="form-control input-error" name="loan-name" type="text" placeholder="loan {{id}}">
+                </div>
+                <div class="col-sm-3">
+                    <input id="current-balance-{{id}}" class="form-control input-error" name="current-balance" placeholder="$0">
+                </div>
+                <div class="col-sm-3">
+                    <input id="minimum-payment-{{id}}" class="form-control input-error" name="minimum-payment" placeholder="$0">
+                </div>
+                <div class="col-sm-2">
+                    <input id="interest-rate-{{id}}" class="form-control input-error" name="interest-rate" placeholder="0%">
+                </div>
         </div>
         <div class="col-sm-1">
+            <a id="edit-button-{{id}}" class="edit-button">EDIT</a>
             <a id="destroy-button-{{id}}" class="destroy-button">&times;</a>
         </div>
     </div>
@@ -228,13 +157,13 @@
     <hr>
     <div class="row text-center">
         <div class="col-sm-4">
-            <h4>loan total</h4>
+            <h4>Loan Total</h4>
         </div>
         <div class="col-sm-4">
-            <h4>debt free by {{total_date}}</h4>
+            <h4>Debt Free by {{total_date}}</h4>
         </div>
         <div class="col-sm-4">
-            <h4>total interest paid: ${{total_interest_paid}}</h4>
+            <h4>Total Interest Paid: ${{total_interest_paid}}</h4>
 
         </div>
     </div>
@@ -303,28 +232,25 @@
 
 
 <!-- Libraries -->
-<script src="javascripts/lib/jquery-2.1.1.min.js"></script>
-<script src="javascripts/lib/bootstrap_3.1.1.js"></script>
-<script src="javascripts/lib/handlebars.js_2.0.0-alpha.2.js"></script>
-<script src="javascripts/lib/amplifyjs_1.1.0.js"></script>
-<script src="javascripts/lib/Chart.js_0.2.0.js"></script>
+<script src="../../public/javascripts/lib/jquery-2.1.1.min.js"></script>
+<script src="../../public/javascripts/lib/bootstrap_3.1.1.js"></script>
+<script src="../../public/javascripts/lib/handlebars.js_2.0.0-alpha.2.js"></script>
+<script src="../../public/javascripts/lib/amplifyjs_1.1.0.js"></script>
+<script src="../../public/javascripts/lib/Chart.js_0.2.0.js"></script>
 
 <!-- My Javascript -->
 
-<script src="javascripts/loan_calculator/application_controller.js"></script>
+<script src="../../public/javascripts/loan_calculator/application_controller.js"></script>
 
-<script src="javascripts/lib/moment.js"></script>
-<script src="javascripts/loan_calculator/graph_controller.js"></script>
-<script src="javascripts/loan_calculator/loan.js"></script>
-<script src="javascripts/loan_calculator/loan_controller.js"></script>
-<script src="javascripts/loan_calculator/responsive_chart.js"></script>
-<script src="javascripts/loan_calculator/results_controller.js"></script>
-<script src="javascripts/loan_calculator/router.js"></script>
-<script src="javascripts/loan_calculator/init.js"></script>
-<script src="javascripts/lib/google_analytics.js"></script>
+<script src="../../public/javascripts/lib/moment.js"></script>
+<script src="../../public/javascripts/loan_calculator/graph_controller.js"></script>
+<script src="../../public/javascripts/loan_calculator/loan.js"></script>
+<script src="../../public/javascripts/loan_calculator/loan_controller.js"></script>
+<script src="../../public/javascripts/loan_calculator/responsive_chart.js"></script>
+<script src="../../public/javascripts/loan_calculator/results_controller.js"></script>
+<script src="../../public/javascripts/loan_calculator/router.js"></script>
+<script src="../../public/javascripts/loan_calculator/init.js"></script>
 
 
 </body>
 </html>
-
-

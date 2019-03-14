@@ -10,9 +10,6 @@ a.destroy-button:hover {
     cursor: pointer;
     color: #f00;
 }
-#title {
-    font-size: 49px;
-}
 .input-error {
     border-color: #c70000;
 }
@@ -29,9 +26,7 @@ p,
     font-weight: 300;
     font-size: 15px;
 }
-.btn {
-    margin-bottom: 10px;
-}
+
 span.question {
     cursor: pointer;
     display: inline-block;

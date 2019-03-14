@@ -6,11 +6,10 @@ var GraphController = function () {
 GraphController.graph = function (results) {
 
     var data = GraphController.get_data(results);
-    var graph_div = $("#graph");
+    var graph_div = $("#balanceGraph");
     if (!$("#myChart").length) {
-        var title = "<h4 class='text-center'>Balance Remaining</h4>";
         var canvas_html = "<canvas id=\"myChart\"  height=\"400\"></canvas>";
-        graph_div.append(title + canvas_html);
+        graph_div.append(canvas_html);
     }
     var steps = GraphController.get_steps();
 

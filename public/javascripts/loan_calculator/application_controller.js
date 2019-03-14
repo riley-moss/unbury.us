@@ -7,18 +7,8 @@ ApplicationController.changePaymentType = function (context) {
     if (button.attr('id') == "avalanche-btn") {
         if (button.hasClass('btn-default')) {
             button.removeClass('btn-default').addClass('btn-primary');
-            $("#snowball-btn").removeClass('btn-primary').addClass('btn-default');
             window.payment_type = "avalanche";
         }
-    }
-    else { //snowball clicked
-        if (button.hasClass('btn-default')) {
-            button.removeClass('btn-default').addClass('btn-primary');
-            $("#avalanche-btn").removeClass('btn-primary').addClass('btn-default');
-            window.payment_type = "snowball";
-        }
-
-
     }
 };
 
@@ -61,10 +51,14 @@ ApplicationController.calculate = function (){
 
 ApplicationController.auto_calculate = function (){
     console.log(Object.size(window.loans));
+    console.log("c: " + !LoanController.valid() );
     if (!LoanController.valid() ) {
+        console.log("a: " + !LoanController.valid() );
         var results = ResultsController.results();
         GraphController.graph(results);
 
+    } else {
+        console.log("b: " + !LoanController.valid() );
     }
 };
 
